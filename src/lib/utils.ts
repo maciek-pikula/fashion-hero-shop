@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const BASE_PATH = "/fashion-hero-shop";
 
 /** Prepends basePath to public asset URLs (needed for GitHub Pages) */
 export function assetUrl(path: string): string {
