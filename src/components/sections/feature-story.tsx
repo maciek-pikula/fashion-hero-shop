@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { assetUrl } from "@/lib/utils";
 
 const spotlights = [
   {
@@ -39,7 +40,7 @@ export function FeatureStory() {
           >
             {/* Background image */}
             <Image
-              src={item.image}
+              src={assetUrl(item.image)}
               alt={item.name}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"

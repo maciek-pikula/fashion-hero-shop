@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { cn, assetUrl } from "@/lib/utils";
 import type { Product } from "@/types";
 import { WishlistButton } from "./wishlist-button";
 import { useQuickView } from "./quick-view-provider";
@@ -36,7 +36,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
     ? "SALE"
     : null;
 
-  const imageSrc = firstColor.image;
+  const imageSrc = assetUrl(firstColor.image);
   const showImage = hasRealImage(imageSrc);
 
   return (

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { heroSlides } from "@/data/products";
 import { PauseIcon, PlayIcon } from "@/components/icons";
+import { assetUrl } from "@/lib/utils";
 
 const slideGradients = [
   "linear-gradient(135deg, #c4b59a 0%, #8a7d6b 40%, #5c6b4f 100%)",
@@ -41,7 +42,7 @@ export function HeroCarousel() {
         {/* Background image */}
         {slide.image.startsWith("/images/") && (
           <Image
-            src={slide.image}
+            src={assetUrl(slide.image)}
             alt={slide.title}
             fill
             className="object-cover"

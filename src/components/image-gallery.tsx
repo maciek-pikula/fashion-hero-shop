@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { cn, assetUrl } from "@/lib/utils";
 
 interface ImageGalleryProps {
   images: string[];
@@ -26,7 +26,7 @@ export function ImageGallery({ images, productName, colorName, colorHex = "#8a7d
   const [zoomPos, setZoomPos] = useState({ x: 50, y: 50 });
   const mainRef = useRef<HTMLDivElement>(null);
 
-  const currentImage = images[selectedIndex] || images[0];
+  const currentImage = assetUrl(images[selectedIndex] || images[0]);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!mainRef.current) return;
@@ -109,7 +109,7 @@ export function ImageGallery({ images, productName, colorName, colorHex = "#8a7d
             >
               {hasRealImage(image) ? (
                 <Image
-                  src={image}
+                  src={assetUrl(image)}
                   alt={`${productName} thumbnail ${index + 1}`}
                   width={80}
                   height={80}

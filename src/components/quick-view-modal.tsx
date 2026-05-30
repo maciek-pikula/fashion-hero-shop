@@ -8,6 +8,7 @@ import { CloseIcon } from "./icons";
 import { ColorSwatches } from "./color-swatches";
 import { SizeSelector } from "./size-selector";
 import { useCart } from "./cart-provider";
+import { assetUrl } from "@/lib/utils";
 
 interface QuickViewModalProps {
   product: Product;
@@ -46,7 +47,7 @@ export function QuickViewModal({ product, onClose }: QuickViewModalProps) {
     onClose();
   }
 
-  const imageSrc = selectedColor.image;
+  const imageSrc = assetUrl(selectedColor.image);
   const showImage = imageSrc.startsWith("/images/");
 
   return (

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { cn, assetUrl } from "@/lib/utils";
 import { CloseIcon, MinusIcon, PlusIcon } from "./icons";
 import type { CartItem } from "@/types";
 
@@ -86,7 +86,7 @@ export function CartDrawer({
           ) : (
             <div className="space-y-4">
               {items.map((item, index) => {
-                const thumbSrc = item.color.image;
+                const thumbSrc = assetUrl(item.color.image);
                 const showThumb = thumbSrc.startsWith("/images/");
                 return (
                   <div key={index} className="flex gap-3 pb-4 border-b border-cream-dark">

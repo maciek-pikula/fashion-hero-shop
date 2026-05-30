@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Collection } from "@/types";
+import { assetUrl } from "@/lib/utils";
 
 interface CollectionHeroProps {
   collection: Collection;
@@ -29,7 +30,7 @@ export function CollectionHero({ collection }: CollectionHeroProps) {
       {/* Background image */}
       {hasImage && (
         <Image
-          src={collection.heroImage}
+          src={assetUrl(collection.heroImage)}
           alt={collection.name}
           fill
           className="object-cover"

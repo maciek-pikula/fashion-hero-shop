@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { assetUrl } from "@/lib/utils";
 
 const promos = [
   {
@@ -46,7 +47,7 @@ export function PromoTiles() {
           >
             {/* Background image */}
             <Image
-              src={promo.image}
+              src={assetUrl(promo.image)}
               alt={promo.title}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
