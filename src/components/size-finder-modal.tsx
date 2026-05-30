@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import {
   getShoeSize,
   getApparelSize,
+  getFootLengthForSize,
   isShoeProduct,
   APPAREL_SIZE_LABELS,
   type GenderCategory,
@@ -213,20 +214,30 @@ export function SizeFinderModal({
             </div>
 
             <div className="grid grid-cols-4 gap-2">
-              {sizes.map((s) => (
-                <button
-                  key={s}
-                  onClick={() => setSuggested(s)}
-                  className={cn(
-                    "py-2.5 text-[13px] font-medium rounded-sm transition-all border",
-                    suggested === s
-                      ? "bg-charcoal text-white border-charcoal"
-                      : "bg-white border-border text-charcoal hover:border-charcoal"
-                  )}
-                >
-                  {sizeLabel(s)}
-                </button>
-              ))}
+              {sizes.map((s) => {
+                const footCm = isShoes
+                  ? getFootLengthForSize(s, gender === "women" ? "women" : "men")
+                  : null;
+                return (
+                  <button
+                    key={s}
+                    onClick={() => setSuggested(s)}
+                    className={cn(
+                      "py-2 text-[13px] font-medium rounded-sm transition-all border flex flex-col items-center gap-0.5",
+                      suggested === s
+                        ? "bg-charcoal text-white border-charcoal"
+                        : "bg-white border-border text-charcoal hover:border-charcoal"
+                    )}
+                  >
+                    <span>{sizeLabel(s)}</span>
+                    {footCm && (
+                      <span className={cn("text-[10px] font-normal", suggested === s ? "text-white/70" : "text-warm-gray")}>
+                        {footCm} cm
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
             </div>
 
             <div className="flex gap-2">

@@ -117,6 +117,13 @@ export function getApparelSize(
   }
 }
 
+/** Returns foot length in cm for a given US shoe size and gender */
+export function getFootLengthForSize(us: number, gender: "men" | "women"): number | null {
+  const table = gender === "men" ? MEN_SHOE_TABLE : WOMEN_SHOE_TABLE;
+  const row = table.find((r) => r.us === us);
+  return row ? row.foot : null;
+}
+
 /** Returns true if a product's sizes look like shoe sizes (> 4) */
 export function isShoeProduct(sizes: number[]): boolean {
   return sizes.some((s) => s > 5);
