@@ -19,7 +19,7 @@ function productGradient(hex: string): string {
 }
 
 function hasRealImage(src: string): boolean {
-  return src.startsWith("/images/");
+  return src.includes("/images/");
 }
 
 export function ProductCard({ product, className }: ProductCardProps) {

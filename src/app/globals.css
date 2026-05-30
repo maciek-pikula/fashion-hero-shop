@@ -148,3 +148,8 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Pointer cursor on all interactive elements */
+button, [role="button"], a {
+  cursor: pointer;
+}

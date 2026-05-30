@@ -87,7 +87,7 @@ export function CartDrawer({
             <div className="space-y-4">
               {items.map((item, index) => {
                 const thumbSrc = assetUrl(item.color.image);
-                const showThumb = thumbSrc.startsWith("/images/");
+                const showThumb = item.color.image.includes("/images/");
                 return (
                   <div key={index} className="flex gap-3 pb-4 border-b border-cream-dark">
                     {/* Thumbnail */}
