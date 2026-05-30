@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import { FilterSidebar, type GenderFilter, type PriceRange } from "@/components/filter-sidebar";
 import { ProductCard } from "@/components/product-card";
 import { ChevronDownIcon, CloseIcon } from "@/components/icons";
@@ -19,10 +20,11 @@ const sortLabels: Record<SortOption, string> = {
 interface CollectionViewProps {
   products: Product[];
   collectionName: string;
-  initialSellerSlug?: string;
 }
 
-export function CollectionView({ products, collectionName, initialSellerSlug }: CollectionViewProps) {
+export function CollectionView({ products, collectionName }: CollectionViewProps) {
+  const searchParams = useSearchParams();
+  const initialSellerSlug = searchParams.get("seller") ?? undefined;
   const [gender, setGender] = useState<GenderFilter>("all");
   const [sort, setSort] = useState<SortOption>("featured");
   const [priceRange, setPriceRange] = useState<PriceRange>("all");
