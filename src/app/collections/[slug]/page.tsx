@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getCollection } from "@/data/collections";
 import { collections } from "@/data/collections";
@@ -41,10 +42,12 @@ export default async function CollectionPage({ params }: PageProps) {
   return (
     <>
       <CollectionHero collection={collection} />
-      <CollectionView
-        products={products}
-        collectionName={collection.name}
-      />
+      <Suspense fallback={null}>
+        <CollectionView
+          products={products}
+          collectionName={collection.name}
+        />
+      </Suspense>
     </>
   );
 }
