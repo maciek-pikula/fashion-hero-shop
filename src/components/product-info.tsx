@@ -9,6 +9,7 @@ import { SizeSelector } from "@/components/size-selector";
 import { useCart } from "@/components/cart-provider";
 import { WishlistButton } from "@/components/wishlist-button";
 import { getSellerById } from "@/data/sellers";
+import { SizeFinderModal } from "@/components/size-finder-modal";
 
 interface ProductInfoProps {
   product: Product;
@@ -58,6 +59,7 @@ function getEstimatedDelivery(): string {
 export function ProductInfo({ product }: ProductInfoProps) {
   const [selectedColor, setSelectedColor] = useState<ProductColor>(product.colors[0]);
   const [selectedSize, setSelectedSize] = useState<number | null>(null);
+  const [sizeFinderOpen, setSizeFinderOpen] = useState(false);
   const { addItem } = useCart();
 
   const stock = useMemo(() => getStockInfo(product.id), [product.id]);
@@ -157,10 +159,29 @@ export function ProductInfo({ product }: ProductInfoProps) {
       />
 
       {/* Size selector */}
-      <SizeSelector
+      <div>
+        <SizeSelector
+          sizes={product.sizes}
+          selectedSize={selectedSize}
+          onSelect={setSelectedSize}
+        />
+        <button
+          onClick={() => setSizeFinderOpen(true)}
+          className="mt-2 text-[12px] text-warm-gray underline underline-offset-2 hover:text-charcoal transition-colors"
+        >
+          Podaj swoje wymiary
+        </button>
+      </div>
+
+      <SizeFinderModal
+        open={sizeFinderOpen}
+        onClose={() => setSizeFinderOpen(false)}
         sizes={product.sizes}
-        selectedSize={selectedSize}
-        onSelect={setSelectedSize}
+        gender={product.category}
+        onSelectSize={(size) => {
+          setSelectedSize(size);
+          setSizeFinderOpen(false);
+        }}
       />
 
       {/* Add to cart — prominent dark button */}
