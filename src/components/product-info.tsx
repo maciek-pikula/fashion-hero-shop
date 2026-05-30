@@ -159,7 +159,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
       />
 
       {/* Size selector */}
-      <div>
+      <div className="flex flex-col gap-3">
         <SizeSelector
           sizes={product.sizes}
           selectedSize={selectedSize}
@@ -167,9 +167,15 @@ export function ProductInfo({ product }: ProductInfoProps) {
         />
         <button
           onClick={() => setSizeFinderOpen(true)}
-          className="mt-2 text-[12px] text-warm-gray underline underline-offset-2 hover:text-charcoal transition-colors"
+          className="flex items-center justify-center gap-1.5 w-full py-2.5 border border-border rounded-full text-[12px] font-medium uppercase tracking-[0.5px] text-warm-gray hover:border-charcoal hover:text-charcoal transition-colors"
         >
-          Podaj swoje wymiary
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M2 9a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/>
+            <path d="M9 22V12"/>
+            <path d="M15 22V12"/>
+            <path d="M2 14h20"/>
+          </svg>
+          Find My Size
         </button>
       </div>
 

@@ -59,10 +59,7 @@ export function SizeFinderModal({
 }: SizeFinderModalProps) {
   const isShoes = isShoeProduct(sizes);
 
-  // Shoe inputs
   const [foot, setFoot] = useState("");
-
-  // Apparel inputs
   const [chest, setChest] = useState("");
   const [waist, setWaist] = useState("");
   const [hips, setHips] = useState("");
@@ -92,7 +89,6 @@ export function SizeFinderModal({
 
     if (rawSize === null) return;
 
-    // Find closest available size in product's size array
     const available = sizes.includes(rawSize)
       ? rawSize
       : sizes.reduce((prev, curr) =>
@@ -127,24 +123,22 @@ export function SizeFinderModal({
     isShoes ? `US ${s}` : `${APPAREL_SIZE_LABELS[s] ?? s}`;
 
   return (
-    // Backdrop
     <div
       className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
 
-      {/* Panel */}
       <div className="relative z-10 w-full sm:max-w-sm bg-white rounded-t-2xl sm:rounded-xl shadow-2xl p-6 flex flex-col gap-5">
         {/* Header */}
         <div className="flex items-center justify-between">
           <h2 className="text-[13px] font-medium uppercase tracking-[0.6px] text-charcoal">
-            Podaj swoje wymiary
+            Find Your Size
           </h2>
           <button
             onClick={onClose}
             className="text-warm-gray hover:text-charcoal transition-colors text-lg leading-none"
-            aria-label="Zamknij"
+            aria-label="Close"
           >
             ✕
           </button>
@@ -153,28 +147,28 @@ export function SizeFinderModal({
         {/* Inputs */}
         {isShoes ? (
           <InputField
-            label="Długość stopy"
-            hint="np. 26.5"
+            label="Foot Length"
+            hint="e.g. 26.5"
             value={foot}
             onChange={setFoot}
           />
         ) : (
           <div className="flex flex-col gap-3">
             <InputField
-              label="Obwód klatki piersiowej"
-              hint="np. 96"
+              label="Chest Circumference"
+              hint="e.g. 96"
               value={chest}
               onChange={setChest}
             />
             <InputField
-              label="Obwód talii"
-              hint="np. 80"
+              label="Waist Circumference"
+              hint="e.g. 80"
               value={waist}
               onChange={setWaist}
             />
             <InputField
-              label="Obwód bioder"
-              hint="np. 102"
+              label="Hip Circumference"
+              hint="e.g. 102"
               value={hips}
               onChange={setHips}
             />
@@ -187,7 +181,7 @@ export function SizeFinderModal({
             onClick={handleCalculate}
             className="w-full py-3 bg-charcoal text-white text-[12px] font-medium uppercase tracking-[0.6px] rounded-full hover:bg-charcoal/80 transition-colors"
           >
-            Sprawdź rozmiar
+            Find My Size
           </button>
         )}
 
@@ -195,13 +189,13 @@ export function SizeFinderModal({
         {noMatch && (
           <div className="flex flex-col gap-3">
             <p className="text-[12px] text-warm-gray text-center">
-              Brak idealnego dopasowania w dostępnych rozmiarach.
+              No perfect match in available sizes.
             </p>
             <button
               onClick={handleReset}
               className="w-full py-3 border border-border text-charcoal text-[12px] font-medium uppercase tracking-[0.6px] rounded-full hover:border-charcoal transition-colors"
             >
-              Spróbuj ponownie
+              Try Again
             </button>
           </div>
         )}
@@ -211,14 +205,13 @@ export function SizeFinderModal({
           <div className="flex flex-col gap-4">
             <div className="flex flex-col items-center gap-1 py-3 border border-border rounded-sm">
               <span className="text-[11px] uppercase tracking-[0.5px] text-warm-gray">
-                Sugerowany rozmiar
+                Recommended Size
               </span>
               <span className="text-2xl font-medium text-charcoal">
                 {sizeLabel(suggested)}
               </span>
             </div>
 
-            {/* Size picker — all available sizes */}
             <div className="grid grid-cols-4 gap-2">
               {sizes.map((s) => (
                 <button
@@ -241,13 +234,13 @@ export function SizeFinderModal({
                 onClick={handleReset}
                 className="flex-1 py-3 border border-border text-charcoal text-[12px] font-medium uppercase tracking-[0.6px] rounded-full hover:border-charcoal transition-colors"
               >
-                Popraw
+                Edit
               </button>
               <button
                 onClick={handleConfirm}
                 className="flex-1 py-3 bg-charcoal text-white text-[12px] font-medium uppercase tracking-[0.6px] rounded-full hover:bg-charcoal/80 transition-colors"
               >
-                Wybierz {sizeLabel(suggested)}
+                Select {sizeLabel(suggested)}
               </button>
             </div>
           </div>
