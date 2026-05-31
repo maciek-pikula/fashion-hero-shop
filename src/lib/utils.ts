@@ -5,7 +5,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-const BASE_PATH = "/fashion-hero-shop";
+const BASE_PATH =
+  process.env.NODE_ENV === "production" ? "/fashion-hero-shop" : "";
 
 /** Prepends basePath to public asset URLs (needed for GitHub Pages) */
 export function assetUrl(path: string): string {
