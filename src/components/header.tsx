@@ -35,15 +35,15 @@ export function Header({ onCartOpen, cartCount = 0, wishlistCount = 0 }: HeaderP
           {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
         </button>
 
-        {/* Logo */}
-        <Link href="/" className="mr-8">
+        {/* Desktop nav — left side */}
+        <MegaMenuNav />
+
+        {/* Logo — absolutely centered */}
+        <Link href="/" className="absolute left-1/2 -translate-x-1/2">
           <span className="text-xl font-semibold italic tracking-tight text-charcoal">
             FashionHero
           </span>
         </Link>
-
-        {/* Desktop nav with mega menu */}
-        <MegaMenuNav />
 
         {/* Right side icons */}
         <div className="flex items-center gap-3 ml-auto">
