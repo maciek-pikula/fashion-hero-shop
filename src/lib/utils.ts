@@ -5,11 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-const BASE_PATH =
-  process.env.NODE_ENV === "production" ? "/fashion-hero-shop" : "";
-
-/** Prepends basePath to public asset URLs (needed for GitHub Pages) */
+/** Returns public asset URL (no basePath needed on Vercel) */
 export function assetUrl(path: string): string {
-  if (!path.startsWith("/")) return path;
-  return `${BASE_PATH}${path}`;
+  return path;
 }
