@@ -8,6 +8,9 @@ if (typeof window !== "undefined") {
     api_host: "https://eu.i.posthog.com",
     ui_host: "https://eu.posthog.com",
     capture_pageview: "history_change",
+    session_recording: {
+      maskAllInputs: false,
+    },
   });
 }
 
